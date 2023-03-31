@@ -68,7 +68,7 @@ Since ***COUNT*** is considered an aggregate function, I have to use the ***GROU
 ## Drawing Insights
 
 1. Looking at the output, we can see that there are a total of 300,024 employees in the dataset.
-2. There were a total of 36,150 employees hired in 1986. The first employee hired that year was Jiann Bondorf on Januray 1st, 1986 and the last employee hired that year was Odoardo Heuter on December 31st, 1986.
+2. There were a total of 36,150 employees hired in 1986. The first employee hired that year was Jiann Bondorf on January 1st, 1986 and the last employee hired that year was Odoardo Heuter on December 31st, 1986.
 3. There were a total of 24 managers, with most departments having more than just one manager.
 4. There were a total of 331,603 results. This might seem odd since I previously stated that there were only 300,024 employees in the dataset, but if we take a closer look at the results, we can see that some employees are part of more than one department.
 5. There were a total of 20 results. The oldest Hercules B. was born in 1952 and the youngest Hercules B. was born in 1964.
