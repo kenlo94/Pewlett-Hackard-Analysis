@@ -1,7 +1,7 @@
 # Reconstructing Pewlett Hackard's Employee Database: Data Modeling, Engineering, and Analysis of 1980s and 1990s Employment Trends
 
 ## Resources
-Data Sources: titles.csv, employees.csv, departments.csv, dept_emp.csv, dept_manager.csv, salaries.csv
+Data sources: titles.csv, employees.csv, departments.csv, dept_emp.csv, dept_manager.csv, salaries.csv
 
 Software: pgAdmin 4 Version 6.1; PostgreSQL 14.1
 
