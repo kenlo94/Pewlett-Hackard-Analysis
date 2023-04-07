@@ -20,11 +20,13 @@ Software: pgAdmin 4 Version 6.1; PostgreSQL 14.1
 7. List each employee in the Sales and Development departments, including their employee number, last name, first name, and department name
 8. List the frequency counts, in descending order, of all the employee last names (that is, how many employees share each last name)
 
-## Results & Analysis
-First, I created a new database on the ***postgres*** server. I titled the new database ***employee_db***. 
+## Processing and Visualization
+First, I created a new database on the ***postgres*** server. I titled the new database ***employee_db***.
+
 ![Screenshot](Images/employee_db.png)
 
 Next, I created the structure of the database and defined the relationships between its objects, also known as the schema. 
+
 ![Screenshot](Images/schema1.png)![Screenshot](Images/schema2.png)
 
 The image above displays the code required to create the table schema for the six csv files. The data types have been specified for each column of each table, foreign keys have been referenced, and primary keys have been designated. **Please note** that some primary keys are *composite keys* because it takes more than one column to uniquely identify a row. This is because some values appear more than once in each column. 
@@ -35,34 +37,42 @@ Now, I can begin to answer the questions presented earlier.
 
 ### 1. List the employee number, last name, first name, sex, and salary of each employee
 ![Screenshot](Images/q1.png)
+
 I had to use an ***INNER JOIN*** statement in the query since the employee salary was in the *salaries* table and not the *employees* table.
 
 ### 2. List the first name, last name, and hire date for the employees who were hired in 1986
 ![Screenshot](Images/q2.png)
+
 I used the keyword ***BETWEEN*** since I was only interested in employees who were hired in the year 1986.
 
 ### 3. List the manager of each department along with their department number, department name, employee number, last name, and first name
 ![Screenshot](Images/q3.png)
+
 I used two ***INNER JOIN*** statements in the query since the department managers and department names were both in different tables.
 
 ### 4. List the department number for each employee along with that employee’s employee number, last name, first name, and department name
 ![Screenshot](Images/q4.png)
+
 Similar to the process for question 3, but instead of the department managers table, I substituted the department employees table.
 
 ### 5. List first name, last name, and sex of each employee whose first name is Hercules and whose last name begins with the letter B
 ![Screenshot](Images/q5.png)
+
 I used the keyword ***LIKE*** for the second part of the ***WHERE*** clause because all I know about the last name is that it begins with a ***B***, unlike the first part of the ***WHERE*** clause where I know it is equal to ***Hercules***.
 
 ### 6. List each employee in the Sales department, including their employee number, last name, and first name
 ![Screenshot](Images/q6.png)
+
 I used two ***INNER JOIN*** statements in the query since the department employees and department names were both in different tables. Then I filtered for employees who were part of the Sales department in the ***WHERE*** clause.
 
 ### 7. List each employee in the Sales and Development departments, including their employee number, last name, first name, and department name
 ![Screenshot](Images/q7.png)
+
 Similar to the process for question 6, but I used the ***IN*** keyword within the ***WHERE*** clause since I am interested in employees who were part of the Sales or Development departments. Alternatively, I could have used the ***OR*** keyword to achieve the same results.
 
 ### 8. List the frequency counts, in descending order, of all the employee last names (that is, how many employees share each last name)
 ![Screenshot](Images/q8.png)
+
 Since ***COUNT*** is considered an aggregate function, I have to use the ***GROUP BY*** clause for the query to run and display properly.
 
 ## Drawing Insights
@@ -77,7 +87,4 @@ Since ***COUNT*** is considered an aggregate function, I have to use the ***GROU
 8. There were a total of 1,638 results. The most common last name in the employee database was ***Baba*** with a count of 226. The least common last name in the employee database was ***Foolsday*** with a count of 1.
 
 ---
-<div style="display: flex; justify-content: space-between;">
-    <div>Return to the <a href="https://kenlo94.github.io/">Homepage</a></div>
-    <div>View the Project on <a href="https://github.com/kenlo94/Pewlett-Hackard-Analysis">GitHub</a></div>
-</div>
+Return to the [Homepage](https://kenlo94.github.io/)
