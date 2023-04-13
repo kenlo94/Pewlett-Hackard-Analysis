@@ -5,7 +5,7 @@ Data sources: titles.csv, employees.csv, departments.csv, dept_emp.csv, dept_man
 
 Software: pgAdmin 4 Version 6.1; PostgreSQL 14.1
 
-## Project Overview
+## Project Objectives
 ### Use the provided information to:
 1. Create a table schema for each of the six .csv files
 2. Import each .csv file into its corresponding SQL table
