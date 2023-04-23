@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-07QV7C307D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-07QV7C307D');
+    </script>
+    <meta charset="utf-8">
+    <title>Reconstructing Pewlett Hackard's Employee Database: Data Modeling, Engineering, and Analysis of 1980s and 1990s Employment Trends</title>
+    <style>
+        #preview {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        body {
+            font-size: 20px;
+        }
+
+        .my-hr {
+            margin-top: -1.25em !important;
+            margin-bottom: 0em !important;
+        }
+    </style>
+</head>
+
+<body id="preview">
+    <h1 class="code-line" data-line-start=0 data-line-end=1><a
+            id="Reconstructing_Pewlett_Hackards_Employee_Database_Data_Modeling_Engineering_and_Analysis_of_1980s_and_1990s_Employment_Trends_0"></a>Reconstructing
+        Pewlett Hackard’s Employee Database: Data Modeling, Engineering, and Analysis of 1980s and 1990s Employment
+        Trends</h1>
+    <h2 class="code-line" data-line-start=2 data-line-end=3><a id="Resources_2"></a>Resources</h2>
+    <hr class="my-hr">
+    <p class="has-line-data" data-line-start="3" data-line-end="4">Data sources: titles.csv, employees.csv,
+        departments.csv, dept_emp.csv, dept_manager.csv, salaries.csv</p>
+    <p class="has-line-data" data-line-start="5" data-line-end="6">Software: pgAdmin 4 Version 6.1; PostgreSQL 14.1</p>
+    <h2 class="code-line" data-line-start=7 data-line-end=8><a id="Project_Objectives_7"></a>Project Objectives</h2>
+    <hr class="my-hr">
+    <h3 class="code-line" data-line-start=8 data-line-end=9><a id="Use_the_provided_information_to_8"></a>Use the
+        provided information to:</h3>
+    <ol>
+        <li class="has-line-data" data-line-start="9" data-line-end="10">Create a table schema for each of the six .csv
+            files</li>
+        <li class="has-line-data" data-line-start="10" data-line-end="12">Import each .csv file into its corresponding
+            SQL table</li>
+    </ol>
+    <h3 class="code-line" data-line-start=12 data-line-end=13><a id="Then_answer_the_following_questions_12"></a>Then
+        answer the following questions:</h3>
+    <ol>
+        <li class="has-line-data" data-line-start="13" data-line-end="14">List the employee number, last name, first
+            name, sex, and salary of each employee</li>
+        <li class="has-line-data" data-line-start="14" data-line-end="15">List the first name, last name, and hire date
+            for the employees who were hired in 1986</li>
+        <li class="has-line-data" data-line-start="15" data-line-end="16">List the manager of each department along with
+            their department number, department name, employee number, last name, and first name</li>
+        <li class="has-line-data" data-line-start="16" data-line-end="17">List the department number for each employee
+            along with that employee’s employee number, last name, first name, and department name</li>
+        <li class="has-line-data" data-line-start="17" data-line-end="18">List first name, last name, and sex of each
+            employee whose first name is Hercules and whose last name begins with the letter B</li>
+        <li class="has-line-data" data-line-start="18" data-line-end="19">List each employee in the Sales department,
+            including their employee number, last name, and first name</li>
+        <li class="has-line-data" data-line-start="19" data-line-end="20">List each employee in the Sales and
+            Development departments, including their employee number, last name, first name, and department name</li>
+        <li class="has-line-data" data-line-start="20" data-line-end="22">List the frequency counts, in descending
+            order, of all the employee last names (that is, how many employees share each last name)</li>
+    </ol>
+    <h2 class="code-line" data-line-start=22 data-line-end=23><a id="Processing_and_Visualization_22"></a>Processing and
+        Visualization</h2>
+    <hr class="my-hr">
+    <p class="has-line-data" data-line-start="23" data-line-end="24">First, I created a new database on the
+        <strong><em>postgres</em></strong> server. I titled the new database <strong><em>employee_db</em></strong>.</p>
+    <p class="has-line-data" data-line-start="25" data-line-end="26"><img src="Images/employee_db.png" alt="Screenshot">
+    </p>
+    <p class="has-line-data" data-line-start="27" data-line-end="28">Next, I created the structure of the database and
+        defined the relationships between its objects, also known as the schema.</p>
+    <p class="has-line-data" data-line-start="29" data-line-end="30"><img src="Images/schema1.png" alt="Screenshot"><img
+            src="Images/schema2.png" alt="Screenshot"></p>
+    <p class="has-line-data" data-line-start="31" data-line-end="32">The image above displays the code required to
+        create the table schema for the six csv files. The data types have been specified for each column of each table,
+        foreign keys have been referenced, and primary keys have been designated. <strong>Please note</strong> that some
+        primary keys are <em>composite keys</em> because it takes more than one column to uniquely identify a row. This
+        is because some values appear more than once in each column.</p>
+    <p class="has-line-data" data-line-start="33" data-line-end="34">After I executed the code for the schema, I began
+        importing each csv file into its corresponding SQL table. To avoid errors, I imported the csv files in the same
+        order as I created the tables.</p>
+    <p class="has-line-data" data-line-start="35" data-line-end="36">Now, I can begin to answer the questions presented
+        earlier.</p>
+    <h3 class="code-line" data-line-start=37 data-line-end=38><a
+            id="1_List_the_employee_number_last_name_first_name_sex_and_salary_of_each_employee_37"></a>1. List the
+        employee number, last name, first name, sex, and salary of each employee</h3>
+    <p class="has-line-data" data-line-start="38" data-line-end="39"><img src="Images/q1_2.png" alt="Screenshot"></p>
+    <p class="has-line-data" data-line-start="40" data-line-end="41">I had to use an <strong><em>INNER
+                JOIN</em></strong> statement in the query since the employee salary was in the <em>salaries</em> table
+        and not the <em>employees</em> table.</p>
+    <h3 class="code-line" data-line-start=42 data-line-end=43><a
+            id="2_List_the_first_name_last_name_and_hire_date_for_the_employees_who_were_hired_in_1986_42"></a>2. List
+        the first name, last name, and hire date for the employees who were hired in 1986</h3>
+    <p class="has-line-data" data-line-start="43" data-line-end="44"><img src="Images/q2_2.png" alt="Screenshot"></p>
+    <p class="has-line-data" data-line-start="45" data-line-end="46">I used the keyword
+        <strong><em>BETWEEN</em></strong> since I was only interested in employees who were hired in the year 1986.</p>
+    <h3 class="code-line" data-line-start=47 data-line-end=48><a
+            id="3_List_the_manager_of_each_department_along_with_their_department_number_department_name_employee_number_last_name_and_first_name_47"></a>3.
+        List the manager of each department along with their department number, department name, employee number, last
+        name, and first name</h3>
+    <p class="has-line-data" data-line-start="48" data-line-end="49"><img src="Images/q3_2.png" alt="Screenshot"></p>
+    <p class="has-line-data" data-line-start="50" data-line-end="51">I used two <strong><em>INNER JOIN</em></strong>
+        statements in the query since the department managers and department names were both in different tables.</p>
+    <h3 class="code-line" data-line-start=52 data-line-end=53><a
+            id="4_List_the_department_number_for_each_employee_along_with_that_employees_employee_number_last_name_first_name_and_department_name_52"></a>4.
+        List the department number for each employee along with that employee’s employee number, last name, first name,
+        and department name</h3>
+    <p class="has-line-data" data-line-start="53" data-line-end="54"><img src="Images/q4_2.png" alt="Screenshot"></p>
+    <p class="has-line-data" data-line-start="55" data-line-end="56">Similar to the process for question 3, but instead
+        of the department managers table, I substituted the department employees table.</p>
+    <h3 class="code-line" data-line-start=57 data-line-end=58><a
+            id="5_List_first_name_last_name_and_sex_of_each_employee_whose_first_name_is_Hercules_and_whose_last_name_begins_with_the_letter_B_57"></a>5.
+        List first name, last name, and sex of each employee whose first name is Hercules and whose last name begins
+        with the letter B</h3>
+    <p class="has-line-data" data-line-start="58" data-line-end="59"><img src="Images/q5_2.png" alt="Screenshot"></p>
+    <p class="has-line-data" data-line-start="60" data-line-end="61">I used the keyword <strong><em>LIKE</em></strong>
+        for the second part of the <strong><em>WHERE</em></strong> clause because all I know about the last name is that
+        it begins with a <strong><em>B</em></strong>, unlike the first part of the <strong><em>WHERE</em></strong>
+        clause where I know it is equal to <strong><em>Hercules</em></strong>.</p>
+    <h3 class="code-line" data-line-start=62 data-line-end=63><a
+            id="6_List_each_employee_in_the_Sales_department_including_their_employee_number_last_name_and_first_name_62"></a>6.
+        List each employee in the Sales department, including their employee number, last name, and first name</h3>
+    <p class="has-line-data" data-line-start="63" data-line-end="64"><img src="Images/q6_2.png" alt="Screenshot"></p>
+    <p class="has-line-data" data-line-start="65" data-line-end="66">I used two <strong><em>INNER JOIN</em></strong>
+        statements in the query since the department employees and department names were both in different tables. Then
+        I filtered for employees who were part of the Sales department in the <strong><em>WHERE</em></strong> clause.
+    </p>
+    <h3 class="code-line" data-line-start=67 data-line-end=68><a
+            id="7_List_each_employee_in_the_Sales_and_Development_departments_including_their_employee_number_last_name_first_name_and_department_name_67"></a>7.
+        List each employee in the Sales and Development departments, including their employee number, last name, first
+        name, and department name</h3>
+    <p class="has-line-data" data-line-start="68" data-line-end="69"><img src="Images/q7_2.png" alt="Screenshot"></p>
+    <p class="has-line-data" data-line-start="70" data-line-end="71">Similar to the process for question 6, but I used
+        the <strong><em>IN</em></strong> keyword within the <strong><em>WHERE</em></strong> clause since I am interested
+        in employees who were part of the Sales or Development departments. Alternatively, I could have used the
+        <strong><em>OR</em></strong> keyword to achieve the same results.</p>
+    <h3 class="code-line" data-line-start=72 data-line-end=73><a
+            id="8_List_the_frequency_counts_in_descending_order_of_all_the_employee_last_names_that_is_how_many_employees_share_each_last_name_72"></a>8.
+        List the frequency counts, in descending order, of all the employee last names (that is, how many employees
+        share each last name)</h3>
+    <p class="has-line-data" data-line-start="73" data-line-end="74"><img src="Images/q8_2.png" alt="Screenshot"></p>
+    <p class="has-line-data" data-line-start="75" data-line-end="76">Since <strong><em>COUNT</em></strong> is considered
+        an aggregate function, I have to use the <strong><em>GROUP BY</em></strong> clause for the query to run and
+        display properly.</p>
+    <h2 class="code-line" data-line-start=77 data-line-end=78><a id="Drawing_Insights_77"></a>Drawing Insights</h2>
+    <hr class="my-hr">
+    <ol>
+        <li class="has-line-data" data-line-start="79" data-line-end="80">Looking at the output, we can see that there
+            are a total of 300,024 employees in the dataset.</li>
+        <li class="has-line-data" data-line-start="80" data-line-end="81">There were a total of 36,150 employees hired
+            in 1986. The first employee hired that year was Jiann Bondorf on January 1st, 1986 and the last employee
+            hired that year was Odoardo Heuter on December 31st, 1986.</li>
+        <li class="has-line-data" data-line-start="81" data-line-end="82">There were a total of 24 managers, with most
+            departments having more than just one manager.</li>
+        <li class="has-line-data" data-line-start="82" data-line-end="83">There were a total of 331,603 results. This
+            might seem odd since I previously stated that there were only 300,024 employees in the dataset, but if we
+            take a closer look at the results, we can see that some employees are part of more than one department.</li>
+        <li class="has-line-data" data-line-start="83" data-line-end="84">There were a total of 20 results. The oldest
+            Hercules B. was born in 1952 and the youngest Hercules B. was born in 1964.</li>
+        <li class="has-line-data" data-line-start="84" data-line-end="85">There were a total of 52,245 employees that
+            were a part of the Sales department.</li>
+        <li class="has-line-data" data-line-start="85" data-line-end="86">There were a total of 137,952 employees that
+            were a part of the Sales or Development department.</li>
+        <li class="has-line-data" data-line-start="86" data-line-end="88">There were a total of 1,638 results. The most
+            common last name in the employee database was <strong><em>Baba</em></strong> with a count of 226. The least
+            common last name in the employee database was <strong><em>Foolsday</em></strong> with a count of 1.</li>
+    </ol>
+    <hr>
+    <p class="has-line-data" data-line-start="89" data-line-end="90">Return to the <a
+            href="https://kenlo94.github.io/">Homepage</a></p>
+</body>
+
+</html>
